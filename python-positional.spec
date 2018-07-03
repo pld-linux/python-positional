@@ -8,7 +8,7 @@
 Summary:	Library to enforce positional or key-word arguments
 Name:		python-positional
 Version:	1.1.2
-Release:	1
+Release:	2
 License:	Apache
 Group:		Libraries/Python
 Source0:	https://pypi.python.org/packages/8c/16/64a4fa0967c486380468dca18867d22ac1c17bba06349e31ace77c7757f7/positional-%{version}.tar.gz
