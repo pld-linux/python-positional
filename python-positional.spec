@@ -7,12 +7,12 @@
 
 Summary:	Library to enforce positional or key-word arguments
 Name:		python-positional
-Version:	1.1.2
-Release:	3
+Version:	1.2.1
+Release:	1
 License:	Apache
 Group:		Libraries/Python
-Source0:	https://pypi.python.org/packages/8c/16/64a4fa0967c486380468dca18867d22ac1c17bba06349e31ace77c7757f7/positional-%{version}.tar.gz
-# Source0-md5:	cf34a3544538570681e3d40b7a53d4d6
+Source0:	https://files.pythonhosted.org/packages/source/p/positional/positional-%{version}.tar.gz
+# Source0-md5:	4afcffd8e2ba733fd7a50f137a2ee893
 URL:		https://pypi.python.org/pypi/positional
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
