@@ -9,7 +9,7 @@ Summary:	Library to enforce positional or key-word arguments
 Summary(pl.UTF-8):	Biblioteka wymuszająca argumenty pozycyjne lub nazwane
 Name:		python-positional
 Version:	1.2.1
-Release:	6
+Release:	7
 License:	Apache v2.0
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/p/positional/positional-%{version}.tar.gz
