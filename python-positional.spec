@@ -3,13 +3,13 @@
 %bcond_without	doc	# Sphinx documentation
 %bcond_without	tests	# unit tests
 %bcond_without	python2 # CPython 2.x module
-%bcond_without	python3 # CPython 3.x module
+%bcond_with	python3 # CPython 3.x module
 
 Summary:	Library to enforce positional or key-word arguments
 Summary(pl.UTF-8):	Biblioteka wymuszająca argumenty pozycyjne lub nazwane
 Name:		python-positional
 Version:	1.2.1
-Release:	8
+Release:	9
 License:	Apache v2.0
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/p/positional/positional-%{version}.tar.gz
