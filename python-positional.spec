@@ -1,15 +1,15 @@
 #
 # Conditional build:
 %bcond_without	doc	# Sphinx documentation
-%bcond_without	tests	# unit tests
+%bcond_with	tests	# unit tests
 %bcond_without	python2 # CPython 2.x module
-%bcond_with	python3 # CPython 3.x module
+%bcond_without	python3 # CPython 3.x module
 
 Summary:	Library to enforce positional or key-word arguments
 Summary(pl.UTF-8):	Biblioteka wymuszająca argumenty pozycyjne lub nazwane
 Name:		python-positional
 Version:	1.2.1
-Release:	9
+Release:	10
 License:	Apache v2.0
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/p/positional/positional-%{version}.tar.gz
@@ -23,6 +23,7 @@ BuildRequires:	python-pbr >= 1.8
 BuildRequires:	python-setuptools
 %if %{with tests}
 BuildRequires:	python-fixtures >= 1.3.1
+BuildRequires:	python-mimeparse
 BuildRequires:	python-testrepository >= 0.0.18
 BuildRequires:	python-testresources >= 0.2.4
 BuildRequires:	python-testtools >= 1.4.0
@@ -35,6 +36,7 @@ BuildRequires:	python3-pbr >= 1.8
 BuildRequires:	python3-setuptools
 %if %{with tests}
 BuildRequires:	python3-fixtures >= 1.3.1
+BuildRequires:	python3-mimeparse
 BuildRequires:	python3-testrepository >= 0.0.18
 BuildRequires:	python3-testresources >= 0.2.4
 BuildRequires:	python3-testtools >= 1.4.0
@@ -42,7 +44,7 @@ BuildRequires:	python3-wrapt >= 1.8
 %endif
 %endif
 %if %{with doc}
-BuildRequires:	sphinx-pdg-2 >= 1.2.1
+BuildRequires:	sphinx-pdg-3
 %endif
 Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
@@ -90,20 +92,30 @@ Dokumentacja API modułu Pythona positional.
 
 %build
 %if %{with python2}
-%py_build %{?with_tests:test}
+%py_build
 
-rm -rf .testrepository
+%if %{with tests}
+# use explicit plugins list for reliable builds (delete PYTEST_PLUGINS if empty)
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PYTEST_PLUGINS= \
+%{__python} -m pytest positional/tests
+%endif
 %endif
 
 %if %{with python3}
-%py3_build %{?with_tests:test}
+%py3_build
 
-rm -rf .testrepository
+%if %{with tests}
+# use explicit plugins list for reliable builds (delete PYTEST_PLUGINS if empty)
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PYTEST_PLUGINS= \
+%{__python3} -m pytest positional/tests
+%endif
 %endif
 
 %if %{with doc}
 %{__make} -C doc html \
-	SPHINXBUILD=sphinx-build-2
+	SPHINXBUILD=sphinx-build-3
 %endif
 
 %install
